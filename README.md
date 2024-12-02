@@ -1,4 +1,4 @@
-#SQL Command:
+SQL Command:
 
 CREATE TABLE tutors (
     id INT AUTO_INCREMENT PRIMARY KEY,
