@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
 session_start();
 require('db.php');
 
@@ -38,18 +38,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   }
 
   if (empty($errors)) {
-    if (isset($user['PASSWORD']) && isset($user['salt'])) {
-      $hashedPassword = $user['PASSWORD'];
+    if (isset($user['password']) && isset($user['salt'])) {
+      $hashedPassword = $user['password'];
       $salt = $user['salt'];
       if (password_verify($password . $salt, $hashedPassword)) {
         $_SESSION['email'] = $email;
         $_SESSION['user_type'] = $userType;
         header('Location: index.php');
       } else {
-        $errors[] = "Invalid email or password!";
+        $errors[] = "Invalid password!";
       }
     } else {
-      $errors[] = "Invalid email or password!";
+      $text  = var_dump($user);
+      $errors[] = "Invalid email!{$text}";
     }
   }
 }
@@ -66,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
-  <h1 class="title">Login to HiGA Tutor Portal</h1>
+  <h1 class="title">Login to <span>HiGA Tutor Portal</span></h1>
   <?php if (!empty($errors)): ?>
     <div class="error-messages">
       <?php foreach ($errors as $error): ?>
@@ -74,16 +75,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <?php endforeach; ?>
     </div>
   <?php endif; ?>
-  <form method="post">
-    <input type="text" name="email" id="email" placeholder="Email" value="<?php echo htmlspecialchars($email); ?>" required>
-    <input type="password" name="password" id="password" placeholder="Password" required>
-    <input type="submit" value="Login">
-  </form>
+  <div class="body">
+    <form id="login-form" method="post">
+      <input type="text" name="email" id="email" placeholder="Email" value="<?php echo htmlspecialchars($email); ?>" required>
+      <input type="password" name="password" id="password" placeholder="Password" required>
+      <input id="login-btn" type="submit" value="Login">
+    </form>
+  </div>
   <p class="signup-link">
     Don't have an account? <a href="signup.php">Sign Up</a>
   </p>
   <p class="admin-link">
-    Are you an admin? <a href="admin.php">Admin Login</a>
+    Are you an admin? <a href="admin.php">Admin Page</a>
   </p>
 </body>
 

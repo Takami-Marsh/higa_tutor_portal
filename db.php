@@ -1,8 +1,8 @@
 <?php
-$server = "localhost";
-$username = "root";
-$password = "";
-$dbname = "higa_tutor_portal";
+$server = "****";
+$username = "****";
+$password = "****";
+$dbname = "****";
 
 $conn = new mysqli($server, $username, $password, $dbname);
 
