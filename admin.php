@@ -70,6 +70,12 @@ if ($result->num_rows > 0) {
 } else {
   $users = [];
 }
+
+// Place space after comma for better readability
+foreach ($users as &$user) {
+  $user['subjects'] = str_replace(',', ', ', $user['subjects']);
+}
+
 ?>
 
 
@@ -126,36 +132,36 @@ if ($result->num_rows > 0) {
     $students = $studentResult->num_rows > 0 ? $studentResult->fetch_all(MYSQLI_ASSOC) : [];
     // Find matching pairs
     $matchingPairs = [];
-     foreach ($tutors as $tutor) {
-    $tutorSubjects = array_map('trim', explode(',', $tutor['subjects']));
+    foreach ($tutors as $tutor) {
+      $tutorSubjects = array_map('trim', explode(',', $tutor['subjects']));
 
-    // For tutors with HL subjects, add corresponding SL subjects
-    foreach ($tutorSubjects as $subject) {
-      if (substr($subject, -3) === '-hl') {
-        $slSubject = substr($subject, 0, -3) . '-sl';
-        if (!in_array($slSubject, $tutorSubjects)) {
-          $tutorSubjects[] = $slSubject;
+      // For tutors with HL subjects, add corresponding SL subjects
+      foreach ($tutorSubjects as $subject) {
+        if (substr($subject, -3) === '-hl') {
+          $slSubject = substr($subject, 0, -3) . '-sl';
+          if (!in_array($slSubject, $tutorSubjects)) {
+            $tutorSubjects[] = $slSubject;
+          }
         }
       }
-    }
 
-    foreach ($students as $student) {
-      $studentSubjects = array_map('trim', explode(',', $student['subjects']));
-      $commonSubjects = array_intersect($tutorSubjects, $studentSubjects);
+      foreach ($students as $student) {
+        $studentSubjects = array_map('trim', explode(',', $student['subjects']));
+        $commonSubjects = array_intersect($tutorSubjects, $studentSubjects);
 
-      // Check for language compatibility
-      $languageMatch = ($tutor['preferred_language'] === 'both' || $student['preferred_language'] === 'both') ||
-        ($tutor['preferred_language'] === $student['preferred_language']);
+        // Check for language compatibility
+        $languageMatch = ($tutor['preferred_language'] === 'both' || $student['preferred_language'] === 'both') ||
+          ($tutor['preferred_language'] === $student['preferred_language']);
 
-      // Check for university compatibility
-      $universityMatch = ($tutor['university_choice'] === 'both' || $student['university_choice'] === 'both') ||
-        ($tutor['university_choice'] === $student['university_choice']);
+        // Check for university compatibility
+        $universityMatch = ($tutor['university_choice'] === 'both' || $student['university_choice'] === 'both') ||
+          ($tutor['university_choice'] === $student['university_choice']);
 
-      if (
-        !empty($commonSubjects) &&
-        $languageMatch &&
-        $universityMatch
-      ) {
+        if (
+          !empty($commonSubjects) &&
+          $languageMatch &&
+          $universityMatch
+        ) {
           $matchingPairs[] = [
             'tutor_name' => $tutor['name'] . "\n(" . ucfirst($tutor['sex']) . ")",
             'student_name' => $student['name'] . "\n(" . ucfirst($student['sex']) . ")",
