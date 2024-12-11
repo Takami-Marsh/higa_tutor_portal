@@ -71,11 +71,11 @@ if ($result->num_rows > 0) {
   $users = [];
 }
 
-// Place space after comma for better readability
+// Add space after commas in 'subjects' for better readability
 foreach ($users as &$user) {
   $user['subjects'] = str_replace(',', ', ', $user['subjects']);
 }
-
+unset($user);
 ?>
 
 
