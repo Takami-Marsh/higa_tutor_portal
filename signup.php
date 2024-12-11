@@ -27,11 +27,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (isset($_POST['grade']))
     $grade = $_POST['grade'];
 
+  $flag = true;
+
   if ($password_input != $confirmPassword) {
     $errors[] = "Passwords do not match!";
+    $flag = false;
   }
 
-  $flag = true;
+  if (!preg_match('/^s[0-9]{5}@higanet\.higa\.ed\.jp$/', $email)) {
+    $errors[] = "Please Enter a Valid HiGA Email Address!";
+    $flag = false;
+  }
+
 
   require('db.php');
   $query = "SELECT * FROM tutors WHERE email = ?";
@@ -60,6 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (isset($_POST['signup_as_tutor']) && $flag) {
     if (empty($_POST['subjects'])) {
       $errors[] = "Please select at least one subject!";
+      $flag = false;
     } else {
       $subjectsList = implode(',', $subjects);
     }
