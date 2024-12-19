@@ -44,6 +44,10 @@ input[type="checkbox"] {
   display: none;
 }
 
+input[type="radio"] {
+    display: none !important;
+}
+
 select:invalid {
   color: rgb(38 38 38 / .55);
 }

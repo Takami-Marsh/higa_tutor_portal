@@ -33,6 +33,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login - HiGA Tutor Portal</title>
+    <link rel="shortcut icon" href="./higa_logo.png">
     <link rel="stylesheet" href="style.css">
   </head>
 
@@ -87,6 +88,7 @@ unset($user);
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin - HiGA Tutor Portal</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="./higa_logo.png">
 </head>
 
 <body id="admin">

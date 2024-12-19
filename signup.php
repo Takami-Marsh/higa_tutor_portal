@@ -5,6 +5,10 @@
 // 1. パスワードが一致していない場合のエラー表示
 // 2. メールアドレスがすでに登録されている場合のエラー表示
 // 3. 教科が選択されていない場合のエラー表示
+
+// 応募期間終了の場合
+header('Location: finished.php');
+
 session_start();
 if (isset($_SESSION['email'])) {
   header('Location: index.php');
@@ -35,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   }
 
   if (!preg_match('/^s[0-9]{5}@higanet\.higa\.ed\.jp$/', $email)) {
-    $errors[] = "Please Enter a Valid HiGA Email Address!";
+    $errors[] = "Please Enter a Valid HiGA Email Address! (s*****@higanet.higa.ed.jp)";
     $flag = false;
   }
 
@@ -104,6 +108,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HiGA Tutor Portal</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="./higa_logo.png">
+
   <!-- Include jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
