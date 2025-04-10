@@ -1,9 +1,12 @@
 :root {
   --bg-clr: #F5F5F5;
   --tx-clr: #262626;
-  --pr-clr: #5F5AA2;
-  --sc-clr: #C4CAD0;
-  --er-clr: #ED254E;
+  --pr-clr: rgba(95, 90, 162, 0.8);
+  --sc-clr: rgba(196, 202, 208, 0.5);
+  --er-clr: rgba(237, 37, 78, 0.8);
+  --glass-bg: rgba(255, 255, 255, 0.15);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
 }
 
 * {
@@ -11,10 +14,11 @@
 }
 
 body {
-  background-color: var(--bg-clr);
+  background: linear-gradient(135deg, #F5F5F5, #E0E0E0);
   color: var(--tx-clr);
   font-family: 'Roboto', sans-serif;
   margin: 3vmin;
+  min-height: 100vh;
 }
 
 h2 {
@@ -30,14 +34,17 @@ h3 {
 }
 
 input[type="text"], input[type="email"], input[type="password"], select {
-  background-color: var(--bg-clr);
+  background: var(--glass-bg);
   width: 400px;
   height: 56px;
   padding: 0 28px;
   font-size: 1.5rem;
   border-radius: 100vh;
-  border: solid 1px var(--tx-clr);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   appearance: none;
+  box-shadow: var(--glass-shadow);
 }
 
 input[type="checkbox"] {
@@ -82,6 +89,13 @@ button {
   flex-direction: column;
   gap: 3rem;
   align-items: center;
+  padding: 2rem;
+  background: var(--glass-bg);
+  border-radius: 20px;
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: var(--glass-shadow);
 }
 
 .signup-option {
@@ -98,7 +112,11 @@ button {
   width: 250px;
   height: 50px;
   border-radius: 25px;
-  background-color: var(--sc-clr);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: var(--glass-shadow);
   transition: all 200ms;
 }
 
@@ -145,10 +163,14 @@ button {
 
 .subject .subject-group div label {
   text-align: center;
-  border: solid 1px var(--tx-clr);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
   border-radius: 30px;
   padding: 14px;
   cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: var(--glass-shadow);
   transition: all 200ms;
 }
 
@@ -173,9 +195,12 @@ button {
   height: 50px;
   font-size: 1.2rem;
   border-radius: 100vh;
-  border: none;
-  background-color: var(--sc-clr);
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
   color: var(--tx-clr);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: var(--glass-shadow);
   transition: all 200ms;
 }
 
@@ -217,9 +242,12 @@ button {
   height: 50px;
   font-size: 1.2rem;
   border-radius: 100vh;
-  border: none;
-  background-color: var(--sc-clr);
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
   color: var(--tx-clr);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: var(--glass-shadow);
   transition: all 200ms;
 }
 
@@ -231,6 +259,12 @@ button {
 #admin table {
   border-collapse: collapse;
   text-align: center;
+  background: var(--glass-bg);
+  border-radius: 10px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: var(--glass-shadow);
+  overflow: hidden;
 }
 
 #admin table thead {

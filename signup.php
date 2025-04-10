@@ -7,7 +7,7 @@
 // 3. 教科が選択されていない場合のエラー表示
 
 // 応募期間終了の場合
-header('Location: finished.php');
+// header('Location: finished.php');
 
 session_start();
 if (isset($_SESSION['email'])) {
