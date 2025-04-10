@@ -1,4 +1,4 @@
-# Higa Tutor Portal
+# HiGA Tutor Portal
 
 A web-based platform that connects students with tutors, specifically designed for academic guidance and university admissions support.
 
